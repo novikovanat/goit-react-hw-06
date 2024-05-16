@@ -1,9 +1,11 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useId } from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "../redux/contactsSlice";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 
-export default function LoginForm({ handleSubmit }) {
+export default function LoginForm() {
   const nameFieldId = useId();
   const numberFieldId = useId();
   const validationSchema = Yup.object().shape({
@@ -14,14 +16,19 @@ export default function LoginForm({ handleSubmit }) {
     phoneNumber: Yup.string()
       .matches(/^[1-9]\d{1,14}$/, "Invalid phone number!")
       .required("Phone number is required!"),
-  })
+  });
+  const dispatch = useDispatch();
+  const handleSubmit = (newContact, actions) => {
+    dispatch(addContact(newContact));
+    actions.resetForm();
+  };
   return (
     <div>
       <Formik
         initialValues={{
           name: "",
           phoneNumber: "",
-          id: "",
+          // id: "",
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}

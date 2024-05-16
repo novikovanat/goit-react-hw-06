@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 export default function Contact({ id, name, phoneNumber }) {
   const dispatch = useDispatch();
   const handleDelete = () => dispatch(deleteContact(id));
-
   return (
     <div>
       <div className={css.contactData}>

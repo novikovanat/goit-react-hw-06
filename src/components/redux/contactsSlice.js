@@ -8,13 +8,11 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-         state.item.push(action.payload);
-        // console.log(action.payload)
-       
+        state.item.push(action.payload);
       },
       prepare(contact) {
         return {
-          payload: { id: nanoid(6), ...contact},
+          payload: { id: nanoid(6), ...contact },
         };
       },
     },

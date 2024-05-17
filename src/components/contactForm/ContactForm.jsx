@@ -28,7 +28,6 @@ export default function LoginForm() {
         initialValues={{
           name: "",
           phoneNumber: "",
-          // id: "",
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
